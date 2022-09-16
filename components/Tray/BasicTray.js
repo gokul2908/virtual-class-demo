@@ -20,6 +20,7 @@ import { ReactComponent as IconSettings } from '../../icons/settings-md.svg';
 import { ReactComponent as IconShare } from '../../icons/share-sm.svg';
 import { ReactComponent as IconHand } from '../../icons/hand-sm.svg';
 import { ReactComponent as IconPoll } from '../../icons/poll-sm.svg';
+import { ReactComponent as IconPopup } from '../../icons/popup-md.svg';
 import {
   useDevices,
   useLocalParticipant,
@@ -95,16 +96,14 @@ export const BasicTray = () => {
       <TrayButton
         label="Camera"
         onClick={() => toggleCamera(isCamMuted)}
-        orange={isCamMuted}
-      >
+        orange={isCamMuted}>
         {isCamMuted ? <IconCameraOff /> : <IconCameraOn />}
       </TrayButton>
       <TrayButton
         label="Mic"
         onClick={() => toggleMic(isMicMuted)}
         orange={isMicMuted}
-        disabled={!isAllowedToTalk}
-      >
+        disabled={!isAllowedToTalk}>
         {isMicMuted ? <IconMicOff /> : <IconMicOn />}
       </TrayButton>
       <span className="divider" />
@@ -117,16 +116,14 @@ export const BasicTray = () => {
       <TrayButton
         label="Chat"
         bubble={hasNewMessages}
-        onClick={() => toggleAside(CHAT_ASIDE)}
-      >
+        onClick={() => toggleAside(CHAT_ASIDE)}>
         <IconChat />
       </TrayButton>
       {showPoll && (
         <TrayButton
           label="Poll"
           orange={currentModals[pollModal]}
-          onClick={() => openModal(pollModal)}
-        >
+          onClick={() => openModal(pollModal)}>
           <IconPoll />
         </TrayButton>
       )}
@@ -134,8 +131,7 @@ export const BasicTray = () => {
         <TrayButton
           label={isHandRaised ? 'Cancel' : 'Question'}
           orange={isHandRaised}
-          onClick={raiseHand}
-        >
+          onClick={raiseHand}>
           <IconHand />
         </TrayButton>
       )}
@@ -146,8 +142,7 @@ export const BasicTray = () => {
         label={isSharingScreen ? 'Stop' : 'Share'}
         orange={isSharingScreen}
         disabled={disabled}
-        onClick={toggleScreenShare}
-      >
+        onClick={toggleScreenShare}>
         <IconShare />
       </TrayButton>
       <TrayButton label="Network" onClick={() => toggleAside(NETWORK_ASIDE)}>
@@ -155,6 +150,9 @@ export const BasicTray = () => {
       </TrayButton>
       <TrayButton label="Settings" onClick={() => openModal(DEVICE_MODAL)}>
         <IconSettings />
+      </TrayButton>
+      <TrayButton label="Pop Up" onClick={() => openModal('create-popup')}>
+        <IconPopup />
       </TrayButton>
 
       <span className="divider" />
